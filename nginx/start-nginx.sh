@@ -16,7 +16,14 @@ if ! command -v nginx &> /dev/null; then
     sudo apt-get update && sudo apt-get install -y nginx
 fi
 
-# Test configuration
+
+# echo "🔧 Ensuring nginx headers-more module is installed (libnginx-mod-http-headers-more)..."
+# sudo apt-get update && sudo apt-get install -y libnginx-mod-http-headers-more || true
+
+echo "🔧 Copying SSL certs to /etc/nginx/ssl/..."
+sudo mkdir -p /etc/nginx/ssl/ && sudo cp "$SCRIPT_DIR"/ssl/medsecure.* /etc/nginx/ssl/ || echo "SSL copy failed, using project path"
+
+
 echo "🔍 Testing Nginx configuration..."
 sudo nginx -t -c "$NGINX_CONF"
 
@@ -26,8 +33,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Stop any existing nginx using this config
-echo "🛑 Stopping existing Nginx (if running)..."
-sudo nginx -s stop -c "$NGINX_CONF" 2>/dev/null || true
+
 
 # Start nginx
 echo "🚀 Starting Nginx..."
@@ -41,8 +47,12 @@ if [ $? -eq 0 ]; then
     echo "  • https://medsecure.com"
     echo "  • https://localhost"
     echo "  • https://medsecure.local"
+    echo "  • https://jenkins.medsecure"
+    echo "  • https://monitoring.medsecure"
     echo ""
     echo "API endpoint: https://medsecure.com/api"
+    echo "Jenkins: https://jenkins.medsecure"
+    echo "Monitoring: https://monitoring.medsecure"
     echo ""
     echo "To stop: sudo nginx -s stop -c $NGINX_CONF"
 else

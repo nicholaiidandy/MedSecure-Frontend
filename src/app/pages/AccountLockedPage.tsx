@@ -45,12 +45,21 @@ export function AccountLockedPage() {
               Contact Administrator
             </button>
 
-            <button
-              onClick={handleReset}
-              className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-lg font-medium transition-colors"
-            >
-              Reset & Try Again (Demo)
-            </button>
+            {(import.meta as any).env.DEV ? (
+              <button
+                onClick={handleReset}
+                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-lg font-medium transition-colors"
+              >
+                Reset & Try Again (Demo)
+              </button>
+            ) : (
+              <button
+                onClick={handleContactAdmin}
+                className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-lg font-medium transition-colors"
+              >
+                Contact Administrator
+              </button>
+            )}
           </div>
 
           {/* Info */}

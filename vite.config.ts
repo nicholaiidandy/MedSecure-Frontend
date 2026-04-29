@@ -43,4 +43,14 @@ export default defineConfig({
   },
 
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  esbuild: {
+    legalComments: 'none',
+  },
+  build: {
+    terserOptions: {
+      format: {
+        comments: false,
+      },
+    },
+  },
 })

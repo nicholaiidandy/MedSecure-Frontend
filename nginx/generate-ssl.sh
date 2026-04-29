@@ -15,7 +15,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout "$SSL_DIR/medsecure.key" \
   -out "$SSL_DIR/medsecure.crt" \
   -subj "/C=US/ST=State/L=City/O=MedSecure/CN=medsecure.com" \
-  -addext "subjectAltName=DNS:localhost,DNS:medsecure.local,DNS:medsecure.com,DNS:www.medsecure.com,IP:127.0.0.1"
+  -addext "subjectAltName=DNS:localhost,DNS:medsecure.local,DNS:medsecure.com,DNS:www.medsecure.com,DNS:jenkins.medsecure,DNS:monitoring.medsecure,IP:127.0.0.1"
 
 echo "SSL certificate generated:"
 echo "  Certificate: $SSL_DIR/medsecure.crt"
@@ -29,3 +29,5 @@ echo "Add to /etc/hosts:"
 echo "  127.0.0.1  medsecure.local"
 echo "  127.0.0.1  medsecure.com"
 echo "  127.0.0.1  www.medsecure.com"
+echo "  127.0.0.1  jenkins.medsecure"
+echo "  127.0.0.1  monitoring.medsecure"

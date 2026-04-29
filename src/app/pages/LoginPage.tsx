@@ -156,15 +156,17 @@ export function LoginPage() {
             </button>
           </form>
 
-          {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
-            <p className="text-xs font-medium text-slate-700 mb-2">Demo Credentials:</p>
-            <div className="space-y-1 text-xs text-slate-600">
-              <p><strong>Doctor:</strong> doctor@medical.com / doctor123</p>
-              <p><strong>Nurse:</strong> nurse@medical.com / nurse123</p>
-              <p><strong>Admin:</strong> admin@medical.com / admin123</p>
+          {/* Demo Credentials - only show in development builds */}
+          {(import.meta as any).env.DEV && (
+            <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <p className="text-xs font-medium text-slate-700 mb-2">Demo Credentials:</p>
+              <div className="space-y-1 text-xs text-slate-600">
+                <p><strong>Doctor:</strong> nicholai@doctor.com / nicholai123</p>
+                <p><strong>Nurse:</strong> nurse@medical.com / nurse123</p>
+                <p><strong>Admin:</strong> admin@medical.com / admin123</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

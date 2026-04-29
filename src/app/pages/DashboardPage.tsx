@@ -288,7 +288,7 @@ export function DashboardPage() {
         <p className="text-slate-600 mt-1">Monitor and manage your medical system</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-teal-100 rounded-lg">
@@ -303,16 +303,6 @@ export function DashboardPage() {
 
         <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-green-100 rounded-lg">
-              <Activity className="w-6 h-6 text-green-600" />
-            </div>
-          </div>
-          <p className="text-3xl font-semibold text-slate-900 mb-1">12</p>
-          <p className="text-sm text-slate-600">Active Sessions</p>
-        </div>
-
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-red-100 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-red-600" />
             </div>
@@ -322,79 +312,44 @@ export function DashboardPage() {
           </p>
           <p className="text-sm text-slate-600">Failed Logins Today</p>
         </div>
-
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
-          <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <Shield className="w-6 h-6 text-blue-600" />
-            </div>
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Healthy</span>
-          </div>
-          <p className="text-sm font-medium text-slate-900">System Health</p>
-        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200">
-          <div className="p-6 border-b border-slate-200">
-            <h2 className="text-lg font-semibold text-slate-900">Recent Security Events</h2>
-          </div>
-          <div className="divide-y divide-slate-200">
-            {securityEventsLoading ? (
-              <div className="p-6 text-center"><Loader2 className="w-5 h-5 animate-spin text-teal-600" /></div>
-            ) : securityEventsError ? (
-              <div className="p-6 text-center text-red-500">{securityEventsError}</div>
-            ) : securityEvents.length === 0 ? (
-              <div className="p-6 text-center text-slate-500">No security events found.</div>
-            ) : (
-              securityEvents.slice(0, 5).map((event, index) => {
-                const severity = event.action === 'Failed Login Attempt' ? 'warning' :
-                  event.action === 'Account locked' ? 'critical' : 'info';
-                return (
-                  <div key={event._id || index} className="p-6 hover:bg-slate-50">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="font-medium text-slate-900">{event.action}</h3>
-                        <p className="text-sm text-slate-600">{event.user?.email || 'Unknown'}</p>
-                      </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        severity === 'critical' ? 'bg-red-100 text-red-800' :
-                        severity === 'warning' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-blue-100 text-blue-800'
-                      }`}>
-                        {severity.toUpperCase()}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })
-            )}
-          </div>
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200">
+        <div className="p-6 border-b border-slate-200">
+          <h2 className="text-lg font-semibold text-slate-900">Recent Security Events</h2>
         </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200">
-          <div className="p-6 border-b border-slate-200">
-            <h2 className="text-lg font-semibold text-slate-900">System Status</h2>
-          </div>
-          <div className="p-6 space-y-4">
-            {[
-              { service: 'API Server', uptime: '99.9%' },
-              { service: 'Database', uptime: '100%' },
-              { service: 'Blockchain', uptime: '99.8%' },
-              { service: 'Auth Service', uptime: '100%' },
-            ].map((service, index) => (
-              <div key={index} className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span>{service.service}</span>
+        <div className="divide-y divide-slate-200">
+          {securityEventsLoading ? (
+            <div className="p-6 text-center"><Loader2 className="w-5 h-5 animate-spin text-teal-600" /></div>
+          ) : securityEventsError ? (
+            <div className="p-6 text-center text-red-500">{securityEventsError}</div>
+          ) : securityEvents.length === 0 ? (
+            <div className="p-6 text-center text-slate-500">No security events found.</div>
+          ) : (
+            securityEvents.slice(0, 5).map((event, index) => {
+              const severity = event.action === 'Failed Login Attempt' ? 'warning' :
+                event.action === 'Account locked' ? 'critical' : 'info';
+              return (
+                <div key={event._id || index} className="p-6 hover:bg-slate-50">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-medium text-slate-900">{event.action}</h3>
+                      <p className="text-sm text-slate-600">{event.user?.email || 'Unknown'}</p>
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      severity === 'critical' ? 'bg-red-100 text-red-800' :
+                      severity === 'warning' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-blue-100 text-blue-800'
+                    }`}>
+                      {severity.toUpperCase()}
+                    </span>
+                  </div>
                 </div>
-                <span className="text-sm text-slate-600">Uptime: {service.uptime}</span>
-              </div>
-            ))}
-          </div>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
   );
 }
-

@@ -159,6 +159,7 @@ export function AddRecordPage() {
         } catch (uploadErr: any) {
           // IPFS may fail due to auth/infra; base64 fallback already stored in labResults
           console.warn('IPFS upload warning:', uploadErr);
+          toast.error(uploadErr?.message || 'IPFS upload failed; record was saved without IPFS attachment');
         }
       }
 

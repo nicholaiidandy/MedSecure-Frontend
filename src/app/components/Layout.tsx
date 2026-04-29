@@ -48,8 +48,8 @@ export function Layout() {
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/user-management', icon: Settings, label: 'User Management' },
     { path: '/patients', icon: FileHeart, label: 'Patient Records' },
-    { path: '/audit-log', icon: Activity, label: 'Audit Logs' },
-    { path: '/monitoring', icon: Activity, label: 'System Monitoring' },
+
+
     { path: '/security-events', icon: Shield, label: 'Security Events' },
     { path: '/blockchain-verify', icon: LinkIcon, label: 'Blockchain Verify' },
   ];

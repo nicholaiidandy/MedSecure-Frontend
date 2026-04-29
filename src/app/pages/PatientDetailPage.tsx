@@ -237,7 +237,7 @@ export function PatientDetailPage() {
                           >
                             <input
                               type="file"
-                              accept="application/pdf,image/*"
+                              accept="application/pdf,image/png,image/jpeg,image/webp"
                               className="block text-xs"
                               ref={(el) => {
                                 fileInputs.current[record._id] = el;

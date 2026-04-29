@@ -10,10 +10,10 @@ import { PatientsPage } from './pages/PatientsPage';
 import { PatientDetailPage } from './pages/PatientDetailPage';
 import { AddRecordPage } from './pages/AddRecordPage';
 import { AuditLogPage } from './pages/AuditLogPage';
+import { MonitoringPage } from './pages/MonitoringPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { UserManagementPage } from './pages/UserManagementPage';
 import { SecurityEventsPage } from './pages/SecurityEventsPage';
-import { MonitoringPage } from './pages/MonitoringPage';
 import { VitalSignsPage } from './pages/VitalSignsPage';
 import { BlockchainVerificationPage } from './pages/BlockchainVerificationPage';
 import { Error403Page } from './pages/Error403Page';
@@ -81,16 +81,16 @@ export const router = createBrowserRouter([
         element: <SecurityEventsPage />,
       },
       {
-        path: 'monitoring',
-        element: <MonitoringPage />,
-      },
-      {
         path: 'vital-signs',
         element: <VitalSignsPage />,
       },
       {
         path: 'blockchain-verify',
         element: <BlockchainVerificationPage />,
+      },
+      {
+        path: 'monitoring',
+        element: <MonitoringPage />,
       },
       {
         path: '403',
